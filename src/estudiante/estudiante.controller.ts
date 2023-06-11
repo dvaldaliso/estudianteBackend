@@ -1,12 +1,20 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete} from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { EstudianteService } from './estudiante.service';
 import { CreateEstudianteDto } from './dto/create-estudiante.dto';
 import { UpdateEstudianteDto } from './dto/update-estudiante.dto';
 import { estudiante } from './interfaces/estudiante.interface';
 
-@Controller("estudiante")
+@Controller('estudiante')
 export class EstudianteController {
-  constructor(private estudianteService: EstudianteService) {}
+  constructor(private estudianteService: EstudianteService) { }
 
   @Post()
   async create(@Body() CreateEstudianteDto: CreateEstudianteDto) {
@@ -24,7 +32,10 @@ export class EstudianteController {
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateEstudianteDto: UpdateEstudianteDto) {
+  async update(
+    @Param('id') id: string,
+    @Body() updateEstudianteDto: UpdateEstudianteDto,
+  ) {
     return this.estudianteService.update(+id, updateEstudianteDto);
   }
 
